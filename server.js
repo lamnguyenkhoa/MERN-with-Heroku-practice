@@ -8,6 +8,10 @@ const port = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get("/", function (req, res) {
+  res.status(200).send("ok");
+});
+
 app.get("/api/hello", (req, res) => {
   res.send({ express: "Hello From Express" });
 });
@@ -29,4 +33,6 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+var server = app.listen(port, () => console.log(`Listening on port ${port}`));
+
+module.exports = server;
